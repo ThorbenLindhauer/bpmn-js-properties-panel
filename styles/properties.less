@@ -1,49 +1,166 @@
+@brand-primary: #52B415;
+
+
 #js-properties-panel {
   position: absolute;
+  top: 0;
   bottom: 0;
-  left: 0;
+  // left: 0;
   right: 0;
   z-index: 99;
   overflow: hidden;
 }
 
 
+.invalid() {
+  border-color: red;
+  background: rgb(255, 209, 209);
+}
 
+.focus() {
+  outline-color: @brand-primary;
+}
 
 
 .djs-properties-panel {
-  border: solid 2px #ccc;
-  background-color: #f0f0f0;
-  min-height: 45px;
-}
+  background-color: #fafafa;
+  border: solid 1px #ccc;
+  border-width: 0 0 1px 1px;
 
-.djs-properties-group {
-  margin: 10px;
-}
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
-.djs-properties-entry {
-  margin-bottom: 15px;
+  max-width: 300px;
+  max-height: 100%;
+  overflow: auto;
 
-  input.invalid,
-  textarea.invalid {
-    border-color: red;
-    background: rgb(255, 209, 209);
+  &:empty {
+    display: none;
+  }
+
+  label,
+  input {
+    vertical-align: middle;
+  }
+
+
+  input,
+  button,
+  textarea {
+    &.invalid {
+      .invalid();
+    }
+
+    &:focus {
+      .focus();
+    }
+  }
+
+
+  input:not([type=checkbox]),
+  input:not([type=radio]),
+  button,
+  textarea {
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+  }
+
+  [type=text],
+  textarea {
+    width: 100%;
+  }
+
+  textarea {
+    min-height: 45px;
+    resize: vertical;
+  }
+
+  label {
+    font-weight: bolder;
+    display: inline-block;
+    vertical-align: middle;
+
+    &:after {
+      content: ':'
+    }
   }
 
   [data-invalid] {
-    color: red;
+    .invalid();
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .textfield label,
+  .textarea label {
+    margin-bottom: 3px;
+  }
+
+  .radios-group {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 9px 0;
+
+    li {
+      // padding: 3px 0;
+      margin: 6px 0;
+    }
+
+    input,
+    label {
+      vertical-align: middle;
+    }
+
+    input {
+      margin-top: 0;
+      margin-left: 0;
+    }
+
+    label {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .checkbox + .checkbox {
+    margin-top: -6px;
   }
 }
+
+.djs-properties {
+}
+
+.djs-properties-header,
+.djs-properties-group {
+  padding: 15px;
+}
+
+.djs-properties-header {
+  font-size: 120%;
+  font-weight: bolder;
+  padding-bottom: 14px;
+  // margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.djs-properties-group {
+  padding-bottom: (15px - 9px);
+  &:empty {
+    display: none;
+  }
+}
+
+.djs-properties-group + .djs-properties-group {
+  border-top: 1px dotted #ccc;
+}
+
+.djs-properties-entry {
+  margin-bottom: 9px;
+}
+
 
 .djs-properties-hide {
   display: none;
 }
-
-.djs-properties-combo-options {
-
-}
-
-.djs-properties-combo-options-empty {
-}
-
-
